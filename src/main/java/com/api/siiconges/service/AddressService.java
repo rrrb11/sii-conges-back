@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.api.siiconges.model.Address;
@@ -18,11 +19,11 @@ public class AddressService {
 		return addressRepository.findAll();
 	}
 
-	public Optional<Address> getAddressById(Long id) {
+	public Optional<Address> getAddressById(@NonNull Long id) {
 		return addressRepository.findById(id); 
 	}
 	
-	public void deleteSpectacleTicketById(Long id) {		
+	public void deleteSpectacleTicketById(@NonNull Long id) {		
 		addressRepository.deleteById(id);
 
 	}

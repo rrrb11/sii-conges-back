@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,7 +57,7 @@ public class AdminController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable("id") Long id){
+    public ResponseEntity<?> getUserById(@NonNull @PathVariable("id") Long id){
     	User user = userRepository.findById(id).get();
     	if(user != null) {
     		return ResponseEntity.ok(user);
@@ -65,7 +66,7 @@ public class AdminController {
     }
     
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @Valid @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> updateUser(@NonNull @PathVariable("id") Long id, @Valid @RequestBody SignupRequest signUpRequest) {
 
        User userToUpdate = userRepository.findById(id).get();
        if(userToUpdate != null) {
@@ -130,7 +131,7 @@ public class AdminController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id){
+    public ResponseEntity<?> deleteUser(@NonNull @PathVariable("id") Long id){
     	User user = userRepository.findById(id).get();
     	if(user != null) {
     		userRepository.deleteById(id);

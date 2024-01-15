@@ -9,6 +9,7 @@ import com.api.siiconges.model.security.RefreshToken;
 import com.api.siiconges.repository.security.RefreshTokenRepository;
 import com.api.siiconges.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ public class RefreshTokenService {
         return refreshTokenRepository.findByToken(token);
     }
 
-    public RefreshToken createRefreshToken(Long userId) {
+    public RefreshToken createRefreshToken(@NonNull Long userId) {
         RefreshToken refreshToken = new RefreshToken();
 
         if(refreshTokenRepository.findByUserId(userId).isPresent()) {
@@ -58,7 +59,7 @@ public class RefreshTokenService {
     }
 
     @Transactional
-    public int deleteByUserId(Long userId) {
+    public int deleteByUserId(@NonNull Long userId) {
         if(userRepository.findById(userId).isPresent()) {
             return refreshTokenRepository.deleteByUser(userRepository.findById(userId).get());
         }

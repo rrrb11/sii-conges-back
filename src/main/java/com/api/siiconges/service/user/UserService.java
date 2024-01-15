@@ -2,6 +2,8 @@ package com.api.siiconges.service.user;
 
 import com.api.siiconges.model.User;
 import com.api.siiconges.repository.UserRepository;
+
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +15,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User update(User user) {
+    public User update(@NonNull User user) {
         return userRepository.save(user);
     }
 }
